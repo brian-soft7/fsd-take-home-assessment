@@ -77,6 +77,17 @@ class TestApi(unittest.TestCase):
         self.assertIn({"src": "calendar", "id": "CAL-A20", "msg": "not an email: external-guests"}, w)
         self.assertIn({"src": "calendar", "id": "CAL-A16", "msg": "fixed raj.patel[at]atlasvc.com"}, w)
 
+    def test_page(self):
+        r = self.c.get("/")
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("text/html", r.headers["content-type"])
+        self.assertIn("/static/app.js", r.text)
+
+    def test_script(self):
+        r = self.c.get("/static/app.js")
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("/api/meetings", r.text)
+
     def test_sync(self):
         r = self.c.post("/api/sync").json()
         self.assertEqual(r["counts"]["meetings"], 24)

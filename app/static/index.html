@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Sync</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <h1>Event Sync</h1>
+      <p class="muted">CRM and Calendar meetings reconciled into one list. All times are New York time.</p>
+      <ul class="stats" id="stats" aria-label="Summary"></ul>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="filters" aria-label="Filters">
+      <label class="filter">
+        <span class="filter-label">Search</span>
+        <input type="search" id="search" placeholder="Title or client" size="24">
+      </label>
+
+      <label class="filter">
+        <span class="filter-label">Source</span>
+        <select id="source">
+          <option value="">All</option>
+          <option value="both">In both</option>
+          <option value="crm">CRM only</option>
+          <option value="cal">Calendar only</option>
+        </select>
+      </label>
+
+      <label class="filter filter-inline">
+        <input type="checkbox" id="conflicts-only">
+        <span>Only meetings with conflicts</span>
+      </label>
+
+      <button type="button" id="sync">Re-sync files</button>
+    </section>
+
+    <p class="legend" aria-label="Legend">
+      <span class="badge badge-crm">CRM</span>
+      <span class="badge badge-cal">Calendar</span>
+      <span class="badge badge-both">Both agree</span>
+      <span class="legend-sep"></span>
+      <span class="badge badge-conflict">conflict</span> real disagreement
+      <span class="badge badge-diff">diff</span> same fact, different words
+      <span class="badge badge-filled">filled</span> one source was missing it
+    </p>
+
+    <table class="meetings">
+      <caption class="visually-hidden">Reconciled meetings. Select a row to see where each value came from.</caption>
+      <thead>
+        <tr>
+          <th scope="col">When</th>
+          <th scope="col">Meeting</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
+          <th scope="col">Sources</th>
+          <th scope="col">Flags</th>
+        </tr>
+      </thead>
+      <tbody id="meetings"></tbody>
+    </table>
+
+    <details class="report">
+      <summary>Report: duplicates merged and data warnings</summary>
+      <div id="report"></div>
+    </details>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

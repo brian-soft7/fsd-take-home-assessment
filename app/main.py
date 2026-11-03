@@ -3,11 +3,14 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from .build import build
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = Path(os.environ.get("DATA_DIR", ROOT / "data"))
+STATIC = Path(__file__).resolve().parent / "static"
 
 # last result lives here, small data so no database
 state = {}
@@ -63,3 +66,11 @@ def report():
 def sync():
     # read the json files again
     return load()
+
+
+app.mount("/static", StaticFiles(directory=STATIC), name="static")
+
+
+@app.get("/", include_in_schema=False)
+def index():
+    return FileResponse(STATIC / "index.html")

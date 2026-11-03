@@ -1,0 +1,238 @@
+/* ---------- Tokens ---------- */
+:root {
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eef0f4;
+  --color-text: #1d2330;
+  --color-muted: #667085;
+  --color-border: #dde1e8;
+  --color-hover: #f3f6fd;
+
+  --color-crm: #2f6fed;
+  --color-cal: #1a9d6b;
+  --color-both: #7a4fd6;
+  --color-conflict: #d23b3b;
+  --color-diff: #b7791f;
+  --color-neutral: #6b7a90;
+
+  --tint-conflict: #fdeeee;
+  --tint-diff: #fff8e8;
+
+  --radius: 6px;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 14px/1.45 var(--font);
+}
+
+h1 {
+  margin: 0 0 2px;
+  font-size: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+.muted {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.none {
+  color: #aab0bd;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Header and stats ---------- */
+.page-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  padding: 3px 10px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.filter-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-label {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+input,
+select,
+button {
+  padding: 6px 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: inherit;
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--color-hover);
+}
+
+/* ---------- Legend and badges ---------- */
+.legend {
+  margin: 0 0 12px;
+  color: var(--color-muted);
+}
+
+.legend-sep {
+  display: inline-block;
+  width: 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.badge-crm      { background: var(--color-crm); }
+.badge-cal      { background: var(--color-cal); }
+.badge-both     { background: var(--color-both); }
+.badge-conflict { background: var(--color-conflict); }
+.badge-diff     { background: var(--color-diff); }
+.badge-filled,
+.badge-only,
+.badge-info     { background: var(--color-neutral); }
+
+/* ---------- Meetings table ---------- */
+.meetings,
+.fields {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+th,
+td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--color-surface-alt);
+  color: var(--color-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.meeting-row {
+  cursor: pointer;
+}
+
+.meeting-row:hover,
+.meeting-row:focus-visible {
+  background: var(--color-hover);
+  outline: none;
+}
+
+.meeting-detail td {
+  padding: 12px 18px;
+  background: #fbfbfd;
+}
+
+/* ---------- Field table inside a meeting ---------- */
+.fields th[scope="row"] {
+  width: 90px;
+}
+
+.field-conflict td { background: var(--tint-conflict); }
+.field-diff td     { background: var(--tint-diff); }
+
+.shown {
+  font-weight: 600;
+}
+
+.note {
+  display: block;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ---------- Report ---------- */
+.report {
+  margin-top: 16px;
+}
+
+.report summary {
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.report ul,
+.meeting-detail ul {
+  margin: 4px 0;
+  padding-left: 18px;
+}
